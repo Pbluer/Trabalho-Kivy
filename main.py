@@ -1,10 +1,8 @@
 from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
-from kivy.lang.builder import Builder
-import os
 
-usuer = ['admin','admin123']
+usuer = []
 
 class Lista_de_Camisa(FloatLayout):
     '''
@@ -29,11 +27,11 @@ class Tela_de_Cadastro(FloatLayout):
         usuer.append(rs_usuario)
         usuer.append(rs_senha)
         Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Cadastro())
+        Base.root_window.add_widget(Tela_de_Login())
 
     def voltar(self):
         Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_1())
+        Base.root_window.add_widget(Tela_de_Login())
 
 class Tela_de_Login(FloatLayout):
     def login(self):
@@ -46,21 +44,12 @@ class Tela_de_Login(FloatLayout):
 
     def voltar(self):
         Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_1())
-
-class Tela_1(FloatLayout):
-
-    def login(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Login())
-
-    def registro(self):
-        Base.root_window.remove_widget(Base.root)
         Base.root_window.add_widget(Tela_de_Cadastro())
+
 
 class MainTela(App):
     def build(self):
-        return Tela_1()
+        return Tela_de_Login()
 
 Window.size = 300,600
 Base = MainTela()
