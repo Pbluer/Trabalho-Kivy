@@ -66,20 +66,23 @@
 
         Label:
             id:erro
-            text:' '
+            text:''
         BoxLayout:
+            orientation:'vertical'
             Button:
                 text:'ENTRA'
-                font_size:25
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
                 on_press:root.login()
-            Button:
-                text:'VOLTAR'
-                font_size:25
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-                on_press:root.voltar()
+    Button:
+        text:'SEM CADASTRO?'
+        font_size:18
+        size_hint:.8,.05
+        pos_hint:{'center_x':.5,'center_y':.3}
+        background_normal:''
+        background_color:get_color_from_hex('#374B66')
+        on_press:root.voltar()
 
 <Tela_de_Cadastro@FloatLayout>:
     canvas.before:
@@ -95,17 +98,8 @@
         orientation:'vertical'
 
         Label:
-            text:'NOME COMPLETO'
-            font_size:25
-
-        TextInput:
-            id:rs_nome
-            background_normal:''
-            multiline:False
-
-        Label:
             text:'E-MAIL'
-            font_size:25
+            font_size:18
 
         TextInput:
             id:rs_email
@@ -114,7 +108,7 @@
 
         Label:
             text:'USUARIO'
-            font_size:25
+            font_size:18
 
         TextInput:
             id:rs_usuario
@@ -123,7 +117,7 @@
 
         Label:
             text:'SENHA'
-            font_size:25
+            font_size:18
 
         TextInput:
             id:rs_senha
@@ -136,13 +130,13 @@
         BoxLayout:
             Button:
                 text:'REGISTRAR'
-                font_size:20
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
                 on_press:root.registrar()
             Button:
                 text:'VOLTAR'
-                font_size:20
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
                 on_press:root.voltar()
@@ -162,25 +156,25 @@
         spacing:20
         Button:
             text:'CAMISA'
-            font_size:25
+            font_size:18
             background_normal:''
             background_color:get_color_from_hex('#374B66')
             on_press: root.camisa()
 
         Button:
             text:'CANECA'
-            font_size:25
+            font_size:18
             background_normal:''
             background_color:get_color_from_hex('#374B66')
 
         Button:
             text:'PORTA COPOS'
-            font_size:25
+            font_size:18
             background_normal:''
             background_color:get_color_from_hex('#374B66')
         Button:
             text:'ENTRE EM CONTATO'
-            font_size:25
+            font_size:18
             background_normal:''
             background_color:get_color_from_hex('#374B66')
 
@@ -202,12 +196,12 @@
                 size_hint:1,.1
                 Button:
                     text:'VOLTAR'
-                    font_size:20
+                    font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
                 Button:
                     text:'PROXIMO'
-                    font_size:20
+                    font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
                     on_press:root.next()
@@ -230,19 +224,19 @@
                 size_hint:1,.1
                 Button:
                     text:'VOLTAR'
-                    font_size:20
+                    font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
                     on_press:root.back()
                 Button:
                     text:'INICIO'
-                    font_size:20
+                    font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
 
                 Button:
                     text:'PROXIMO'
-                    font_size:20
+                    font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
                     on_press:root.next()
@@ -264,18 +258,18 @@
             size_hint:1,.1
             Button:
                 text:'VOLTAR'
-                font_size:20
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
                 on_press:root.back()
             Button:
                 text:'INICIO'
-                font_size:20
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
             Button:
                 text:'PROXIMO'
-                font_size:20
+                font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
 
