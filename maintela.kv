@@ -39,7 +39,7 @@
         padding:[0,20,0,20]
 
         Label:
-            text:'LOGIN'
+            text:'E-MAIL'
             font_size: 18
         TextInput:
             id:login
@@ -91,6 +91,7 @@
         Rectangle:
             pos:self.pos
             size:self.size
+
     BoxLayout:
         size_hint:.8,.8
         pos_hint:{'center_x':.5,'center_y':.5}
@@ -120,7 +121,7 @@
             font_size:18
 
         TextInput:
-            id:rs_senha
+            id: rs_senha
             background_normal:''
             password:True
             allow_copy:False
@@ -178,7 +179,7 @@
             background_normal:''
             background_color:get_color_from_hex('#374B66')
 
-<CompraApp>:
+<Lista_de_Camisa@FloatLayout>:
     FloatLayout:
         canvas.before:
             Color:
@@ -199,12 +200,14 @@
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
+                    on_press:root.voltar()
+
                 Button:
                     text:'PROXIMO'
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
-                    on_press:root.next()
+                    on_press: root.proximo()
 
 <Camisa001>:
     FloatLayout:
@@ -227,19 +230,20 @@
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
-                    on_press:root.back()
+                    on_press:root.voltar()
                 Button:
                     text:'INICIO'
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
+                    on_press: root.inicio()
 
                 Button:
                     text:'PROXIMO'
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
-                    on_press:root.next()
+                    on_press:root.proximo()
 
 
 <Camisa002>:
@@ -272,5 +276,3 @@
                 font_size:18
                 background_normal:''
                 background_color:get_color_from_hex('#374B66')
-
-
