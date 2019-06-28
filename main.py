@@ -2,15 +2,40 @@ from kivy.app import App
 from kivy.core.window import Window
 from kivy.uix.floatlayout import FloatLayout
 
-usuer = []
+loginn= ['admin123','ramon123']
 
-class Lista_de_Camisa(FloatLayout):
-    '''
-    ESTOU TENTANDO ABRIR UM LAYOUT DE OUTRA PASTA KV
-    '''
+usuario = ['Ramon']
+
+class Camisa_002(FloatLayout):
     pass
 
+class Camisa_001(FloatLayout):
+
+    def voltar(self):
+        Base.root_window.remove_widget(Base.root)
+        Base.root_window.add_widget(Lista_de_Camisa())
+
+    def inicio(self):
+        Base.root_window.remove_widget(Base.root)
+        Base.root_window.add_widget(Tela_de_Lista())
+
+    def proximo(self):
+        Base.root_window.remove_widget(Base.root)
+        Base.root_window.add_widget(Camisa_002())
+
+class Lista_de_Camisa(FloatLayout):
+
+    def voltar(self):
+        Base.root_window.remove_widget(Base.root)
+        Base.root_window.add_widget(Tela_de_Lista())
+
+    def proximo(self):
+        Base.root_window.remove_widget(Base.root)
+        Base.root_window.add_widget(Camisa_001())
+
+
 class Tela_de_Lista(FloatLayout):
+
     def camisa(self):
         Base.root_window.remove_widget(Base.root)
         Base.root_window.add_widget(Lista_de_Camisa())
@@ -18,14 +43,21 @@ class Tela_de_Lista(FloatLayout):
 class Tela_de_Cadastro(FloatLayout):
 
     def registrar(self):
-        rs_nome = self.ids.rs_nome.text
+
+        #RETORNA TODA INFORMÇÃO DOS TEXTINPUT EM STRING
         rs_email = self.ids.rs_email.text
         rs_usuario = self.ids.rs_usuario.text
         rs_senha = self.ids.rs_senha.text
-        usuer.append(rs_nome)
-        usuer.append(rs_email)
-        usuer.append(rs_usuario)
-        usuer.append(rs_senha)
+
+        #ADICIONA AS INFORMAÇÕES EM UMA LISTA
+        loginn.append(rs_email)
+        usuario.append(rs_usuario)
+        loginn.append(rs_senha)
+
+        #info_usuario = self.id.usuario.text = ''
+        #self.ids.usuario.text = usuario
+
+        #ABRE A TELA DE LOGIN
         Base.root_window.remove_widget(Base.root)
         Base.root_window.add_widget(Tela_de_Login())
 
@@ -34,11 +66,13 @@ class Tela_de_Cadastro(FloatLayout):
         Base.root_window.add_widget(Tela_de_Login())
 
 class Tela_de_Login(FloatLayout):
+
+
     def login(self):
         login = self.ids.login.text
         senha = self.ids.senha.text
 
-        if login in usuer and senha in usuer:
+        if login in loginn and senha in loginn:
             Base.root_window.remove_widget(Base.root)
             Base.root_window.add_widget(Tela_de_Lista())
 
