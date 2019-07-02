@@ -1,278 +1,126 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 
-<Tela_1@FloatLayout>:
-    canvas.before:
-        Color:
-            rgba: get_color_from_hex('#358CFF')
-        Rectangle:
-            pos:self.pos
-            size:self.size
-    BoxLayout:
-        orientation:'vertical'
-        pos_hint:{'center_x':.5,'center_y':.5}
-        padding:0,50
-
-        Button:
-            text:'LOGIN'
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-            on_press: root.login()
-
-        Label:
-        Button:
-            text:'REGISTRO'
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-            on_press: root.registro()
-
-<Tela_de_Login@FloatLayout>:
-    canvas.before:
-        Color:
-            rgba: get_color_from_hex('#358CFF')
-        Rectangle:
-            pos:self.pos
-            size:self.size
-    BoxLayout:
-        orientation:'vertical'
-        size_hint: 0.7,0.5
-        pos_hint: {'x':.15,'y':.45}
-        padding:[0,20,0,20]
-
-        Label:
-            text:'E-MAIL'
-            font_size: 18
-        TextInput:
-            id:login
-            #DESATIVA MULTIPLA LINHA
-            background_normal:''
-            multiline:False
-            #NÃO PERMITE FAZER A COPIA DO TEXTO
-            allow_copy:False
-            #MUDA O FUNDO DO TEXTINPUT AO CLICAR
-            #background_active:'folhaGigante.JPG'
-
-        Label:
-            text:'SENHA'
-            font_size: 18
-        TextInput:
-            background_normal:''
-            id:senha
-            #DESATIVA MULTIPLA LINHA
-            multiline:False
-            #NÃO PERMITE FAZER A COPIA DO TEXTO
-            allow_copy:False
-            #ESCONDE A SENHA
-            password:True
-
-        Label:
-            id:erro
-            text:''
-        BoxLayout:
-            orientation:'vertical'
-            Button:
-                text:'ENTRA'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-                on_press:root.login()
-    Button:
-        text:'SEM CADASTRO?'
-        font_size:18
-        size_hint:.8,.05
-        pos_hint:{'center_x':.5,'center_y':.3}
-        background_normal:''
-        background_color:get_color_from_hex('#374B66')
-        on_press:root.voltar()
-
-<Tela_de_Cadastro@FloatLayout>:
-    canvas.before:
-        Color:
-            rgba: get_color_from_hex('#358CFF')
-        Rectangle:
-            pos:self.pos
-            size:self.size
-
-    BoxLayout:
-        size_hint:.8,.8
-        pos_hint:{'center_x':.5,'center_y':.5}
-        #size_hint:
-        orientation:'vertical'
-
-        Label:
-            text:'E-MAIL'
-            font_size:18
-
-        TextInput:
-            id:rs_email
-            background_normal:''
-            multiline:False
-
-        Label:
-            text:'USUARIO'
-            font_size:18
-
-        TextInput:
-            id:rs_usuario
-            background_normal:''
-            multiline:False
-
-        Label:
-            text:'SENHA'
-            font_size:18
-
-        TextInput:
-            id: rs_senha
-            background_normal:''
-            password:True
-            allow_copy:False
-            multiline:False
-
-        Label:
-        BoxLayout:
-            Button:
-                text:'REGISTRAR'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-                on_press:root.registrar()
-            Button:
-                text:'VOLTAR'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-                on_press:root.voltar()
-
-<Tela_de_Lista@FloatLayout>:
-    canvas.before:
-        Color:
-            rgba: get_color_from_hex('#358CFF')
-        Rectangle:
-            pos:self.pos
-            size:self.size
-
-    BoxLayout:
-        size_hint:.9,.5
-        pos_hint:{'center_x':.5,'center_y':.5}
-        orientation:'vertical'
-        spacing:20
-        Button:
-            text:'CAMISA'
-            font_size:18
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-            on_press: root.camisa()
-
-        Button:
-            text:'CANECA'
-            font_size:18
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-
-        Button:
-            text:'PORTA COPOS'
-            font_size:18
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-        Button:
-            text:'ENTRE EM CONTATO'
-            font_size:18
-            background_normal:''
-            background_color:get_color_from_hex('#374B66')
-
-<Lista_de_Camisa@FloatLayout>:
+<TelaLogin>:
+    name:'login'
     FloatLayout:
         canvas.before:
             Color:
-                rgba: get_color_from_hex('#00A2DA')
+                rgba: get_color_from_hex('#358CFF')
             Rectangle:
-                size:self.size
                 pos:self.pos
+                size:self.size
         BoxLayout:
             orientation:'vertical'
-            Button:
-                pos_hint:{'center_x':.5,'center_y':.55}
-                size_hint:1,.9
-                background_normal:'U:/MeuLogin/Login/imagem/5.JPEG'
+            size_hint: 0.7,0.5
+            pos_hint: {'x':.15,'y':.45}
+            padding:[0,20,0,20]
+
+            Label:
+                text:'E-MAIL'
+                font_size: 18
+
+            TextInput:
+                id: email
+                background_normal:''
+                multiline:False
+                allow_copy:False
+
+            Label:
+                text:'SENHA'
+                font_size: 18
+
+            TextInput:
+                background_normal:''
+                id: senha
+                multiline:False
+                allow_copy:False
+                password:True
+
             BoxLayout:
-                size_hint:1,.1
+                orientation:'vertical'
+                Button:
+                    text:'ENTRA'
+                    font_size:18
+                    background_normal:''
+                    background_color:get_color_from_hex('#374B66')
+                    on_press:
+                        root.manager.transition.direction = 'up'
+                        root.loginBT()
+        Button:
+            text:'SEM CADASTRO?'
+            font_size:18
+            size_hint:.8,.05
+            pos_hint:{'center_x':.5,'center_y':.3}
+            background_normal:''
+            background_color:get_color_from_hex('#374B66')
+            on_press:
+                root.manager.transition.direction = 'up'
+                root.cadastroBT()
+
+<TelaCadastro>:
+    name: 'cadastro'
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: get_color_from_hex('#358CFF')
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        BoxLayout:
+            size_hint:.8,.7
+            pos_hint:{'center_x':.5,'center_y':.6}
+            orientation:'vertical'
+
+            Label:
+                text:'E-MAIL'
+                font_size:18
+
+            TextInput:
+                id: email
+                background_normal:''
+                multiline:False
+
+            Label:
+                text:'USUARIO'
+                font_size:18
+
+            TextInput:
+                id: usuario
+                background_normal:''
+                multiline:False
+
+            Label:
+                text:'SENHA'
+                font_size:18
+
+            TextInput:
+                id: senha
+                background_normal:''
+                password:True
+                allow_copy:False
+                multiline:False
+
+            Label:
+            BoxLayout:
+                Button:
+                    text:'FINALIZAR'
+                    font_size:18
+                    background_normal:''
+                    background_color:get_color_from_hex('#374B66')
+                    on_press:
+                        root.manager.transition.direction = 'down'
+                        root.finalizarBT()
                 Button:
                     text:'VOLTAR'
                     font_size:18
                     background_normal:''
                     background_color:get_color_from_hex('#374B66')
-                    on_press:root.voltar()
+                    on_press:
+                        root.manager.transition.direction = 'down'
+                        root.voltarBT()
 
-                Button:
-                    text:'PROXIMO'
-                    font_size:18
-                    background_normal:''
-                    background_color:get_color_from_hex('#374B66')
-                    on_press: root.proximo()
-
-<Camisa001>:
+<TelaEscolha>:
+    name: 'escolha'
     FloatLayout:
-        canvas.before:
-            Color:
-                rgba: get_color_from_hex('#00A2DA')
-            Rectangle:
-                size:self.size
-                pos:self.pos
-        BoxLayout:
-            orientation:'vertical'
-            Button:
-                pos_hint:{'center_x':.5,'center_y':.55}
-                size_hint:1,.9
-                background_normal:'U:/MeuLogin/Login/imagem/2.JPEG'
-            BoxLayout:
-                size_hint:1,.1
-                Button:
-                    text:'VOLTAR'
-                    font_size:18
-                    background_normal:''
-                    background_color:get_color_from_hex('#374B66')
-                    on_press:root.voltar()
-                Button:
-                    text:'INICIO'
-                    font_size:18
-                    background_normal:''
-                    background_color:get_color_from_hex('#374B66')
-                    on_press: root.inicio()
-
-                Button:
-                    text:'PROXIMO'
-                    font_size:18
-                    background_normal:''
-                    background_color:get_color_from_hex('#374B66')
-                    on_press:root.proximo()
-
-
-<Camisa002>:
-    FloatLayout:
-        canvas.before:
-            Color:
-                rgba: get_color_from_hex('#00A2DA')
-            Rectangle:
-                size:self.size
-                pos:self.pos
         Button:
-            pos_hint:{'center_x':.5,'center_y':.55}
-            size_hint:1,.9
-            background_normal:'U:/MeuLogin/Login/imagem/3.JPEG'
-        BoxLayout:
-            size_hint:1,.1
-            Button:
-                text:'VOLTAR'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-                on_press:root.back()
-            Button:
-                text:'INICIO'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
-            Button:
-                text:'PROXIMO'
-                font_size:18
-                background_normal:''
-                background_color:get_color_from_hex('#374B66')
+            text: 'FOI'
