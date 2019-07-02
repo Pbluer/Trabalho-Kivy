@@ -1,90 +1,71 @@
 from kivy.app import App
+from kivy.lang.builder import Builder
+from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
-from kivy.uix.floatlayout import FloatLayout
 
-loginn= ['admin123','ramon123']
+#LISTA PARA SALVAR OS CADASTRO
+login = ['admin123','admin']
+user = []
 
-usuario = ['Ramon']
+kv =Builder.load_file('maintela.kv')
 
-class Camisa_002(FloatLayout):
-    pass
+'''================ TELAS ==================='''
 
-class Camisa_001(FloatLayout):
+class TelaLogin(Screen):
 
-    def voltar(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Lista_de_Camisa())
+    def cadastroBT(self):
+        sm.current = 'cadastro'
 
-    def inicio(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Lista())
-
-    def proximo(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Camisa_002())
-
-class Lista_de_Camisa(FloatLayout):
-
-    def voltar(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Lista())
-
-    def proximo(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Camisa_001())
-
-
-class Tela_de_Lista(FloatLayout):
-
-    def camisa(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Lista_de_Camisa())
-
-class Tela_de_Cadastro(FloatLayout):
-
-    def registrar(self):
-
-        #RETORNA TODA INFORMÇÃO DOS TEXTINPUT EM STRING
-        rs_email = self.ids.rs_email.text
-        rs_usuario = self.ids.rs_usuario.text
-        rs_senha = self.ids.rs_senha.text
-
-        #ADICIONA AS INFORMAÇÕES EM UMA LISTA
-        loginn.append(rs_email)
-        usuario.append(rs_usuario)
-        loginn.append(rs_senha)
-
-        #info_usuario = self.id.usuario.text = ''
-        #self.ids.usuario.text = usuario
-
-        #ABRE A TELA DE LOGIN
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Login())
-
-    def voltar(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Login())
-
-class Tela_de_Login(FloatLayout):
-
-
-    def login(self):
-        login = self.ids.login.text
+    def loginBT(self):
+        email = self.ids.email.text
         senha = self.ids.senha.text
 
-        if login in loginn and senha in loginn:
-            Base.root_window.remove_widget(Base.root)
-            Base.root_window.add_widget(Tela_de_Lista())
+        if email in login and senha in login:
+            sm.current = 'escolha'
 
-    def voltar(self):
-        Base.root_window.remove_widget(Base.root)
-        Base.root_window.add_widget(Tela_de_Cadastro())
+class TelaCadastro(Screen):
 
+    def finalizarBT(self):
+        email = self.ids.email.text
+        usuario = self.ids.usuario.text
+        senha = self.ids.senha.text
 
-class MainTela(App):
-    def build(self):
-        return Tela_de_Login()
+        login.append(email)
+        login.append(senha)
+        user.append(usuario)
 
+        sm.current = 'login'
+
+    def voltarBT(self):
+        self.ids.email.text = ''
+        self.ids.usuario = ''
+        self.ids.senha.text = ''
+        sm.current = 'login'
+
+class TelaEscolha(Screen):
+    pass
+
+'''============= SCREEN MANAGER ============'''
+
+class ControleTela(ScreenManager):
+    pass
+
+sm = ControleTela()
+
+janela = [TelaLogin(name='login'),
+          TelaCadastro(name='cadastro'),
+          TelaEscolha(name='escolha')]
+
+for janela in janela:
+    sm.add_widget(janela)
+#DEFINE A TELA QUE IRÁ APARECER QUADNO O APP ABRE
+sm.current = "login"
+
+'''=============== CLASSE BASE ==============='''
 Window.size = 300,600
-Base = MainTela()
-Base.run()
+class MainApp(App):
+    def build(self):
+        return sm
+
+if __name__ == '__main__':
+    MainApp().run()
